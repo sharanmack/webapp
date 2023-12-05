@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ENV } from 'src/environments/environment';
 type CarData = {
   [key: string]: string[];
 };
@@ -11,8 +12,11 @@ type CarData = {
 export class UplodecarComponent {
   // selectedFile: File | null = null;
   imageUrls: string[] = [];
-
-  constructor(private http: HttpClient) {}
+  endpoint = '/upload';
+  domain: string;
+  constructor(private http: HttpClient) {
+    this.domain = ENV.apiUrl
+  }
 
   car = {
     email : '',
@@ -119,9 +123,8 @@ export class UplodecarComponent {
       formData.append('carPrice', f.value.carPrice);
       formData.append('contactDetails', f.value.contactDetails);
 
-      const apiUrl = 'http://localhost:3000/upload';
 
-      this.http.post(apiUrl, formData).subscribe(
+      this.http.post(`${this.domain}${this.endpoint}`, formData).subscribe(
         (response) => {
           console.log(formData);
         },

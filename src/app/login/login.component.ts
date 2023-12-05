@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { ENV} from 'src/environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   valid: boolean = true;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.domain = "http://localhost:3000"
+    this.domain = ENV.apiUrl
   }
 
   ngOnInit(): void {}

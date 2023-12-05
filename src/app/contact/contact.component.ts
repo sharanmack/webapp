@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ENV } from 'src/environments/environment';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -13,7 +14,7 @@ export class ContactComponent {
   loading = false;
   
   constructor(private router: Router, private http: HttpClient) {
-    this.domain = "http://localhost:3000"
+    this.domain = ENV.apiUrl
   }
   formData: any = {};
   
