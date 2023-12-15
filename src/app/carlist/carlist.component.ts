@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AfterViewInit, ElementRef } from '@angular/core';
 import { ENV } from 'src/environments/environment';
+import { LoginService } from '../login.service';
 @Component({
   selector: 'app-carlist',
   templateUrl: './carlist.component.html',
@@ -18,11 +19,12 @@ export class CarlistComponent implements OnInit {
   kilometerFilter: number | null = null;
   GetC = '/files';
   domain: string;
+  // person: string = this.loginservice.getDataArray();
 
-
-
-  constructor(private http: HttpClient) {
-    this.domain = ENV.apiUrl
+  person: string = localStorage.getItem('userEmail') ?? '';
+  constructor(private http: HttpClient,private loginservice : LoginService) {
+    this.domain = ENV.apiUrl;
+    console.log(this.person)
    }
 
   ngOnInit(): void {
@@ -60,15 +62,15 @@ export class CarlistComponent implements OnInit {
       body: car,
     };
 
-    this.http.delete(`${this.domain}${endpoint}`, httpOptions).subscribe(
-      (response: any) => {
-        console.log("Car deleted successfully");
-      },
-      (error) => {
-        console.error('Car deletion failed:', error);
+    // this.http.delete(`${this.domain}${endpoint}`, httpOptions).subscribe(
+    //   (response: any) => {
+    //     console.log("Car deleted successfully");
+    //   },
+    //   (error) => {
+    //     console.error('Car deletion failed:', error);
      
-      }
-    );
+    //   }
+    // );
   
     const index = this.carsData.indexOf(car);
     if (index !== -1) {
@@ -96,10 +98,10 @@ export class CarlistComponent implements OnInit {
   }
 
   verifyEmailOrPhoneNumber(email: string, phoneNumber: string): boolean {
-    const userInputEmail = prompt("Enter your email:");
-    const userInputPhoneNumber = prompt("Enter your phone number:");
+    const userInputEmail = prompt("Enter your email or Phonenumber same as login");
+   
 
-    return userInputEmail === email || userInputPhoneNumber === phoneNumber;
+    return userInputEmail === email;
   }
   
 

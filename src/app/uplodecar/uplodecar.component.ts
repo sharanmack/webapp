@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ENV } from 'src/environments/environment';
+import { LoginService } from '../login.service';
 type CarData = {
   [key: string]: string[];
 };
@@ -14,15 +15,17 @@ export class UplodecarComponent {
   imageUrls: string[] = [];
   endpoint = '/upload';
   domain: string;
-  constructor(private http: HttpClient) {
-    this.domain = ENV.apiUrl
+  constructor(private http: HttpClient,private loginservice : LoginService) {
+    this.domain = ENV.apiUrl;
+    const dataArray = this.loginservice.getDataArray();
+    console.log(dataArray)
   }
 
   car = {
     email : '',
     name: '',
     model: '',
-    price: 0,
+    price: '',
     kilometre: '',
     contactDetails: '',
     fuelType: '',
@@ -90,10 +93,19 @@ export class UplodecarComponent {
   }
 
   onSubmit(f: any) {
+    const useremail = f.value.email
+    // const dataArray = this.loginservice.getDataArray();
+    const dataArray = localStorage.getItem('userEmail') ?? '';
+    console.log(dataArray,useremail)
     if(!this.selectedFile){
+      alert("Please Upload Car Image")
       return;
       }
-
+    if (useremail.toLowerCase()!==dataArray.toLowerCase()){
+     alert("Please give mail or phone number same as login ")
+    }
+    
+    else{
       const formData = new FormData();
       formData.append('filename', this.selectedFile);
       // formData.append('file',this.selectedFile);
@@ -107,6 +119,7 @@ export class UplodecarComponent {
       formData.append('carPrice', f.value.carPrice);
       formData.append('contactDetails', f.value.contactDetails);
      console.log(formData)
+     alert('Uplodded successful!'); 
 
       this.http.post(`${this.domain}${this.endpoint}`, formData).subscribe(
         (response) => {
@@ -116,11 +129,15 @@ export class UplodecarComponent {
           console.error('Error uploading data and file', error);
         }
       );
+      }
     
   }
-  showAlert(): void {
-    alert('Uplodded successful!'); 
-  }
+  // showAlert(): void {
+  //   const useremail = f.value.email
+  //   const dataArray = this.loginservice.getDataArray();
+  //   console.log(dataArray,useremail)
+  //   alert('Uplodded successful!'); 
+  // }
 }
 
 

@@ -34,54 +34,55 @@
       <input type="number" id="kilometerFilter" [(ngModel)]="kilometerFilter" (input)="updateFilter()" class="filter-input">
     </div>
   </div>
-
-
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Contact Details</th>
-        <th>Brand</th>
-        <th>Car Name</th>
-        <th>Car Model</th>
-        <th>Fuel Type</th>
-        <th>Car Kilometre</th>
-        <th>Car Price</th>
-        <th>Car Details</th>
-        <!-- <th>Action</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of filteredCarsData">
-        <!-- <td>
-          <div id="carouselExample{{ car._id }}" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item" *ngFor="let image of car.images; let i = index" [class.active]="i === 0">
-                <img [src]="getImagePath(image.filename)" class="d-block w-100 img-carousel" alt="Car Image">
+  
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Contact Details</th>
+          <th>Brand</th>
+          <th>Car Name</th>
+          <th>Car Model</th>
+          <th>Fuel Type</th>
+          <th>Car Kilometre</th>
+          <th>Car Price</th>
+          <th>Car Details</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of filteredCarsData">
+          <!-- <td>
+            <div id="carouselExample{{ car._id }}" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item" *ngFor="let image of car.images; let i = index" [class.active]="i === 0">
+                  <img [src]="getImagePath(image.filename)" class="d-block w-100 img-carousel" alt="Car Image">
+                </div>
               </div>
             </div>
-          </div>
-        </td> -->
-
-        <td><img class="car-image" src="{{car.images}}" alt=""></td>
-
-        <td>{{ car.email }}</td>
-        <td>{{ car.brand }}</td>
-        <td>{{ car.carName }}</td>
-        <td>{{ car.carModel }}</td>
-        <td>{{ car.fuelType }}</td>
-        <td>{{ car.carkilometre }}</td>
-        <td>{{ car.carPrice }}</td>
-        <td>{{ car.contactDetails }}</td>
-        <!-- <td>
-
-          <button class="btn btn-danger ms-1" (click)="confirmDelete(car)">
-            <i class="fa fa-trash"></i>
-          </button>
-        </td> -->
-      </tr>
-    </tbody>
-  </table>
+          </td> -->
+  
+          <td><img class="car-image img-fluid" src="{{car.images}}" alt=""></td>
+  
+          <td>{{ car.email }}</td>
+          <td>{{ car.brand }}</td>
+          <td>{{ car.carName }}</td>
+          <td>{{ car.carModel }}</td>
+          <td>{{ car.fuelType }}</td>
+          <td>{{ car.carkilometre }}</td>
+          <td>{{ car.carPrice }}</td>
+          <td>{{ car.contactDetails }}</td>
+          <td *ngIf="car.email.toLowerCase() === person.toLowerCase()">
+            <button class="btn btn-danger ms-1" (click)="confirmDelete(car)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 </div>
 
 

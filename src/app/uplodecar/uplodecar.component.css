@@ -6,13 +6,13 @@ body {
   margin: 0;
 }
 
-.container {
+/* .container {
   display: flex;
   justify-content: center;
-}
+} */
 
 .car-upload-form {
-  width: 50%;
+  /* width: 50%; */
   margin: auto;
   background-color: #f7f7f7;
   padding: 20px;
