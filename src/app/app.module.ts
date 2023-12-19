@@ -29,6 +29,7 @@ import { CarlistComponent } from './carlist/carlist.component';
 import { CarimageComponent } from './carimage/carimage.component';
 import { CartComponent } from './cart/cart.component';
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 
@@ -63,7 +64,7 @@ import { CartComponent } from './cart/cart.component';
 
 
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
