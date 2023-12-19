@@ -73,11 +73,24 @@
           <td>{{ car.carkilometre }}</td>
           <td>{{ car.carPrice }}</td>
           <td>{{ car.contactDetails }}</td>
-          <td *ngIf="car.email.toLowerCase() === person.toLowerCase()">
+          <!-- <td *ngIf="car.email.toLowerCase() === person.toLowerCase()">
+            <button class="btn btn-danger ms-1" (click)="confirmDelete(car)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td> -->
+          <td *ngIf="car.email.toLowerCase() === person.toLowerCase(); else cartIcon">
             <button class="btn btn-danger ms-1" (click)="confirmDelete(car)">
               <i class="fa fa-trash"></i>
             </button>
           </td>
+          <ng-template #cartIcon>
+            <td>
+              <button class="btn btn-danger" (click)="Addtocart(car)">
+                Buy
+              </button>
+              <!-- <app-cart></app-cart> -->
+            </td>
+          </ng-template>
         </tr>
       </tbody>
     </table>

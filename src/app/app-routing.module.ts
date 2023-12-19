@@ -10,6 +10,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { RegisterComponent } from './register/register.component';
 import { UplodecarComponent } from './uplodecar/uplodecar.component';
 import { CarlistComponent } from './carlist/carlist.component';
+import { CartComponent } from './cart/cart.component';
 
 // const routes: Routes = [
 //   // { path: 'card', component: CardComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path : 'register',component:RegisterComponent},
     {path : 'uplodecar' , component:UplodecarComponent},
     {path : 'webapp',component:WebappComponent},
-    {path : 'carlist',component:CarlistComponent  }
+    {path : 'carlist',component:CarlistComponent  },
+    {path : 'cart',component:CartComponent}
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

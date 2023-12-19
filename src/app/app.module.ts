@@ -27,6 +27,7 @@ import { HttpClient,HttpClientModule } from '@angular/common/http';
 import { UplodecarComponent } from './uplodecar/uplodecar.component';
 import { CarlistComponent } from './carlist/carlist.component';
 import { CarimageComponent } from './carimage/carimage.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -49,6 +50,7 @@ import { CarimageComponent } from './carimage/carimage.component';
     UplodecarComponent,
     CarlistComponent,
     CarimageComponent,
+    CartComponent,
     
     
  

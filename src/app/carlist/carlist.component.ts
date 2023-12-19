@@ -11,12 +11,12 @@ import { LoginService } from '../login.service';
 })
 export class CarlistComponent implements OnInit {
   searchText: string = '';
-  carsData: any[] = [];
-  filteredCarsData: any[] = [];
+  carsData: any[] = [];    
+  filteredCarsData: any[] = [];                                                                
   selectedFilter: string = 'carName';
   modelFilter: string = '';
   priceFilter: number | null = null;
-  kilometerFilter: number | null = null;
+  kilometerFilter: number | null = null;  
   GetC = '/files';
   domain: string;
   // person: string = this.loginservice.getDataArray();
@@ -52,6 +52,12 @@ export class CarlistComponent implements OnInit {
   }
 
   deleteCar(car: any): void {
+    const index = this.carsData.indexOf(car);
+    if (index !== -1) {
+      this.carsData.splice(index, 1);
+      this.updateFilter();
+    }
+
     console.log(car);
     const endpoint = "/deletecar";
   
@@ -62,21 +68,21 @@ export class CarlistComponent implements OnInit {
       body: car,
     };
 
-    // this.http.delete(`${this.domain}${endpoint}`, httpOptions).subscribe(
-    //   (response: any) => {
-    //     console.log("Car deleted successfully");
-    //   },
-    //   (error) => {
-    //     console.error('Car deletion failed:', error);
+    this.http.delete(`${this.domain}${endpoint}`, httpOptions).subscribe(
+      (response: any) => {
+        console.log("Car deleted successfully");
+      },
+      (error) => {
+        console.error('Car deletion failed:', error);
      
-    //   }
-    // );
+      }
+    );
   
-    const index = this.carsData.indexOf(car);
-    if (index !== -1) {
-      this.carsData.splice(index, 1);
-      this.updateFilter();
-    }
+    // const index = this.carsData.indexOf(car);
+    // if (index !== -1) {
+    //   this.carsData.splice(index, 1);
+    //   this.updateFilter();
+    // }
   }
 
   toggleImageSize(car: any): void {
@@ -110,4 +116,10 @@ export class CarlistComponent implements OnInit {
     console.log(filename)
     return `${this.domain}/uploads/${filename}`;
   }
+
+Addtocart(car:any){
+console.log(car)
+}
+
+
 }
